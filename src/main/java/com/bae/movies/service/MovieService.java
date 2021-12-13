@@ -16,11 +16,11 @@ public interface MovieService {
 
 	void removeMovie(Integer id);
 	
-//	Movie findMovieName(String movieName);
+//	Movie getMovieName(String movieName);
 //	
-//	List<Movie> findByGenre(String genre);
+	List<Movie> getByGenre(String genre);
 //	
-//	List<Movie> findByYearReleased(Integer yearReleased);
+//	List<Movie> getByYearReleased(Integer yearReleased);
 //	
-//	List<Movie> findByAvailableOn(String availableOn);
+//	List<Movie> getByAvailableOn(String availableOn);
 }
