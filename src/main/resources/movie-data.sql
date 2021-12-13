@@ -1,4 +1,4 @@
-INSERT INTO `moviedb`.`movie`
+INSERT INTO movie
 (
 `movie_name`,
 `genre`,
