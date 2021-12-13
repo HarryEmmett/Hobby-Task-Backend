@@ -57,20 +57,19 @@ public class MovieServiceDB implements MovieService{
 		
 		
 	}
-	
+
 	//ADD THESE LATER
 
 //	@Override
-//	public Movie findMovieName(String movieName) {
-//		// TODO Auto-generated method stub
-//		return null;
+//	public Movie getMovieName(String movieName) {
+//		return this.repo.findMovieName(movieName);
 //	}
-//
-//	@Override
-//	public List<Movie> findByGenre(String genre) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
+	@Override
+	public List<Movie> getByGenre(String genre) {
+		List<Movie> found = this.repo.findByGenre(genre);
+		return found;
+	}
 //
 //	@Override
 //	public List<Movie> findByYearReleased(Integer yearReleased) {

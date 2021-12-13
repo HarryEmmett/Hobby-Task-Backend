@@ -59,4 +59,10 @@ public class MovieController {
 		ResponseEntity<Movie> response = new ResponseEntity<Movie>(HttpStatus.NO_CONTENT);
 		return response;
 	}
+	
+	@GetMapping("/getByGenre/{genre}")
+	public ResponseEntity<List<Movie>> getMovieByGenre(@PathVariable String genre) {
+		List<Movie> found = this.service.getByGenre(genre);
+		return ResponseEntity.ok(found);
+	}
 }
