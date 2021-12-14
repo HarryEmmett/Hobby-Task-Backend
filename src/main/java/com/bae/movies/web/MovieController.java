@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.bae.movies.domain.Movie;
 import com.bae.movies.service.MovieService;
 
 @RestController
+@CrossOrigin
 public class MovieController {
 
 	private MovieService service;
@@ -63,6 +65,12 @@ public class MovieController {
 	@GetMapping("/getByGenre/{genre}")
 	public ResponseEntity<List<Movie>> getMovieByGenre(@PathVariable String genre) {
 		List<Movie> found = this.service.getByGenre(genre);
+		return ResponseEntity.ok(found);
+	}
+	
+	@GetMapping("availableOn/{platform}")
+	public ResponseEntity<List<Movie>> availableOn(@PathVariable String platform) {
+		List<Movie> found = this.service.getByAvailableOn(platform);
 		return ResponseEntity.ok(found);
 	}
 }
