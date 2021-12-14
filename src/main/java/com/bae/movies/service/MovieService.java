@@ -22,5 +22,5 @@ public interface MovieService {
 //	
 //	List<Movie> getByYearReleased(Integer yearReleased);
 //	
-//	List<Movie> getByAvailableOn(String availableOn);
+	List<Movie> getByAvailableOn(String availableOn);
 }

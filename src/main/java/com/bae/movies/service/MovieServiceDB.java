@@ -77,10 +77,10 @@ public class MovieServiceDB implements MovieService{
 //		return null;
 //	}
 //
-//	@Override
-//	public List<Movie> findByAvailableOn(String availableOn) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public List<Movie> getByAvailableOn(String platform) {
+		List<Movie> found = this.repo.findByAvailableOn(platform);
+		return found;
+	}
 
 }
