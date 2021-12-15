@@ -1,7 +1,9 @@
 package com.bae.movies.web;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -60,6 +62,52 @@ public class MovieControllerIntergrationTest {
 		ResultMatcher checkBody = content().json(testAllMoviesAsJSON);
 		
 		this.mvc.perform(request).andExpect(checkBody).andExpect(checkStatus);
+	}
+	
+	@Test
+	void testGetId() throws Exception {
+		RequestBuilder request = get("/get/1");
+		
+		Movie testGetById = new Movie(1, "Lord Of The Rings", "Adventure", 2001, "Netflix");
+		String testGetByIdAsJSON = this.mapper.writeValueAsString(testGetById);
+		ResultMatcher checkStatus = status().isOk();
+		ResultMatcher checkBody = content().json(testGetByIdAsJSON);
+		
+		this.mvc.perform(request).andExpect(checkBody).andExpect(checkStatus);
+	}
+	
+	@Test
+	void testUpdateMovie() throws Exception {
+		Movie testUpdate = new Movie(null, "Superbad", "Comdey", 2008, "Netflix");
+		String testUpdateAsJSON = this.mapper.writeValueAsString(testUpdate);
+		RequestBuilder request = put("/replace/1").content(testUpdateAsJSON).contentType(MediaType.APPLICATION_JSON);
+		
+		Movie testUpdatedMovie = new Movie(1, "Superbad", "Comdey", 2008, "Netflix");
+		String testUpdatedMovieAsJSON = this.mapper.writeValueAsString(testUpdatedMovie);
+		ResultMatcher checkStatus = status().isAccepted();
+		ResultMatcher checkBody = content().json(testUpdatedMovieAsJSON);
+		
+		this.mvc.perform(request).andExpect(checkBody).andExpect(checkStatus);
+	}
+	
+	@Test
+	void testDeleteMovie() throws Exception {
+		RequestBuilder request = delete("/remove/1");
+		ResultMatcher checkStatus = status().isNoContent();
+		
+		this.mvc.perform(request).andExpect(checkStatus);
+	}
+	
+	@Test
+	void testGetGenre() throws Exception {
+		RequestBuilder request = get("/getByGenre/Adventure");
+		
+		List<Movie> testGetByGenre = List.of(new Movie(1, "Lord Of The Rings", "Adventure", 2001, "Netflix"));
+		String testGetByGenreAsJson = this.mapper.writeValueAsString(testGetByGenre);
+		ResultMatcher checkStatus = status().isOk();
+		ResultMatcher checkBody = content().json(testGetByGenreAsJson);
+		
+		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
 	}
 
 }
