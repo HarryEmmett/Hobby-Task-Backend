@@ -60,10 +60,10 @@ public class MovieServiceDB implements MovieService{
 
 	//ADD THESE LATER
 
-//	@Override
-//	public Movie getMovieName(String movieName) {
-//		return this.repo.findMovieName(movieName);
-//	}
+	@Override
+	public Movie getMovieName(String movieName) {
+		return this.repo.findByMovieName(movieName);
+	}
 
 	@Override
 	public List<Movie> getByGenre(String genre) {

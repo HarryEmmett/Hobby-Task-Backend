@@ -8,7 +8,7 @@ import com.bae.movies.domain.Movie;
 
 public interface MovieRepo extends JpaRepository<Movie, Integer>{
 	
-//	Movie findMovieName(String movieName);
+	Movie findByMovieName(String movieName);
 //	
 	List<Movie> findByGenre(String genre);
 //	
