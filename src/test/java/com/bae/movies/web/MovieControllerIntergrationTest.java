@@ -1,8 +1,11 @@
 package com.bae.movies.web;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +48,18 @@ public class MovieControllerIntergrationTest {
 		ResultMatcher checkBody = content().json(testCreatedMovieAsJSON);
 		
 		this.mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
+	}
+	
+	@Test
+	void testGetAll() throws Exception {
+		RequestBuilder request = get("/getAll");
+		
+		List<Movie> testAllMovies = List.of(new Movie(1, "Lord Of The Rings", "Adventure", 2001, "Netflix"));
+		String testAllMoviesAsJSON = this.mapper.writeValueAsString(testAllMovies);
+		ResultMatcher checkStatus = status().isOk();
+		ResultMatcher checkBody = content().json(testAllMoviesAsJSON);
+		
+		this.mvc.perform(request).andExpect(checkBody).andExpect(checkStatus);
 	}
 
 }
