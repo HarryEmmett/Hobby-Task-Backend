@@ -73,4 +73,10 @@ public class MovieController {
 		List<Movie> found = this.service.getByAvailableOn(platform);
 		return ResponseEntity.ok(found);
 	}
+	
+	@GetMapping("getByName/{movieName}")
+	public Movie getName(@PathVariable String movieName) {
+		Movie getMovieName = service.getMovieName(movieName);
+		return getMovieName;
+	}
 }

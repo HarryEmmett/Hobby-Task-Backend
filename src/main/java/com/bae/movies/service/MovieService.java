@@ -16,8 +16,8 @@ public interface MovieService {
 
 	void removeMovie(Integer id);
 	
-//	Movie getMovieName(String movieName);
-//	
+	Movie getMovieName(String movieName);
+	
 	List<Movie> getByGenre(String genre);
 //	
 //	List<Movie> getByYearReleased(Integer yearReleased);
