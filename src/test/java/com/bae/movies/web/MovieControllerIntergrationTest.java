@@ -103,9 +103,33 @@ public class MovieControllerIntergrationTest {
 		RequestBuilder request = get("/getByGenre/Adventure");
 		
 		List<Movie> testGetByGenre = List.of(new Movie(1, "Lord Of The Rings", "Adventure", 2001, "Netflix"));
-		String testGetByGenreAsJson = this.mapper.writeValueAsString(testGetByGenre);
+		String testGetByGenreAsJSON = this.mapper.writeValueAsString(testGetByGenre);
 		ResultMatcher checkStatus = status().isOk();
-		ResultMatcher checkBody = content().json(testGetByGenreAsJson);
+		ResultMatcher checkBody = content().json(testGetByGenreAsJSON);
+		
+		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
+	}
+	
+	@Test
+	void testGetByPlatform() throws Exception {
+		RequestBuilder request = get("/availableOn/Netflix");
+		
+		List<Movie> testGetByPlatform = List.of(new Movie(1, "Lord Of The Rings", "Adventure", 2001, "Netflix"));
+		String testGetByPlatformAsJSON = this.mapper.writeValueAsString(testGetByPlatform);
+		ResultMatcher checkStatus = status().isOk();
+		ResultMatcher checkBody = content().json(testGetByPlatformAsJSON);
+		
+		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
+	}
+	
+	@Test
+	void testGetByMovieName() throws Exception {
+		RequestBuilder request = get("/getByName/Lord Of The Rings");
+		
+		Movie testGetByMovieName = new Movie(1, "Lord Of The Rings", "Adventure", 2001, "Netflix");
+		String testGetByMovieNameAsJSON = this.mapper.writeValueAsString(testGetByMovieName);
+		ResultMatcher checkStatus = status().isOk();
+		ResultMatcher checkBody = content().json(testGetByMovieNameAsJSON);
 		
 		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
 	}
