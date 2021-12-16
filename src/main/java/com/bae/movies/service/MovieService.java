@@ -19,8 +19,6 @@ public interface MovieService {
 	Movie getMovieName(String movieName);
 	
 	List<Movie> getByGenre(String genre);
-//	
-//	List<Movie> getByYearReleased(Integer yearReleased);
-//	
+	
 	List<Movie> getByAvailableOn(String availableOn);
 }
