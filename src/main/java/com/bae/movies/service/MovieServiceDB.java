@@ -70,13 +70,7 @@ public class MovieServiceDB implements MovieService{
 		List<Movie> found = this.repo.findByGenre(genre);
 		return found;
 	}
-//
-//	@Override
-//	public List<Movie> findByYearReleased(Integer yearReleased) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
+
 	@Override
 	public List<Movie> getByAvailableOn(String platform) {
 		List<Movie> found = this.repo.findByAvailableOn(platform);
